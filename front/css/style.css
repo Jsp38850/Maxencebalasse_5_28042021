@@ -1,0 +1,15 @@
+
+.bg-pink{
+    background-color: #f3e9f1;
+}
+
+section img{
+    object-fit: cover;
+    height: 230px;
+    
+}
+
+.btn:hover{
+    background-color: #fbd7f2;
+}
+
