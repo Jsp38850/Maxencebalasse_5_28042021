@@ -50,7 +50,7 @@ ul.className = 'row mt-3 list-unstyled';
 
                 let cameraAvis = document.createElement('p');
                 figure.appendChild(cameraAvis);
-                cameraAvis.classList = 'ml-3';
+                cameraAvis.classList = 'ml-3 ';
                 cameraAvis.textContent = ('Avis' + ' ' + '(' + 0 + ')')
                
                 
@@ -67,7 +67,7 @@ ul.className = 'row mt-3 list-unstyled';
                 figure.appendChild(cameraBouton);
                 cameraBouton.classList = 'btn bg-pink  border-0 text-dark card-body';
                 cameraBouton.textContent = 'En savoir plus ...';
-                cameraBouton.href = 'products.html';
+                cameraBouton.href = 'products.html?id=' + element._id;
         
   
             });
