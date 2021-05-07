@@ -28,7 +28,7 @@ request.onreadystatechange = function () {
     // Images produit // 
     let cameraImg = document.createElement('img');
     div3.appendChild(cameraImg);
-    cameraImg.className = '  ';
+    cameraImg.className = 'h-100 ';
     cameraImg.id = 'cameraImg';
     cameraImg.src = idProduct.imageUrl;
 
@@ -66,8 +66,24 @@ request.onreadystatechange = function () {
     div5.appendChild(cameraAvis);
     cameraAvis.classList = 'card-text mt-2 ';
     cameraAvis.textContent = ('Avis' + ' ' + '(' + 0 + ')')
-     
-     // Bouton Info produit // 
+
+     // Option: // 
+     let cameraOption = document.createElement('p');
+     div5.appendChild(cameraOption);
+     cameraOption.classList = 'card-text mt-2 ';
+     cameraOption.textContent = ('Option :') 
+
+     const list = idProduct.lenses
+     list.forEach(item => {
+        let cameraOption1 = document.createElement('button');
+        cameraOption.appendChild(cameraOption1);
+        cameraOption1.classList = 'ml-3 mt-2 btn btn-outline-dark col-3 text-dark ';
+        cameraOption1.textContent = item
+
+     })
+ 
+    
+     // Bouton Ajout panier // 
     let cameraBouton = document.createElement('a');
     div5.appendChild(cameraBouton);
     cameraBouton.classList = 'd-block btn m-2 bg-pink text-dark';

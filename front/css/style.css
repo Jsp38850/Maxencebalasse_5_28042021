@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+   
+  }
 
 .bg-pink{
     background-color: #f3e9f1;
@@ -6,10 +10,13 @@
 section img{
     object-fit: cover;
     height: 230px;
+    width: 100%;
     
 }
 
 .btn:hover{
     background-color: #fbd7f2;
+    
 }
+
 
