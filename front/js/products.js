@@ -89,11 +89,14 @@ request.onreadystatechange = function () {
     cameraBouton.classList = 'd-block btn m-2 bg-pink text-dark';
     cameraBouton.textContent = 'Ajouter au panier';
     cameraBouton.href = '' ;
-
-
- 
   };
 }
+
+//*Localstorage**/
+
+
+
+
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();
