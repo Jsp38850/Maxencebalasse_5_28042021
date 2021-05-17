@@ -9,9 +9,10 @@ const container = document.getElementById("container");
 let request = new XMLHttpRequest();
 request.onreadystatechange = function () {
   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-    
     // Affiche des produits
     var idProduct = JSON.parse(this.responseText);
+
+    console.log(idProduct);
 
     let div = document.createElement("div");
     container.appendChild(div);
@@ -90,29 +91,27 @@ request.onreadystatechange = function () {
 
     //Localstorage
 
-    //Transforme en JSON//
-    var img_json = JSON.stringify(cameraImg.src);
-    var nom_json = JSON.stringify(cameraName.textContent);
-    var option_json = JSON.stringify(cameraOption.textContent);
-    var price_json = JSON.stringify(cameraPrice.textContent);
-
-    //Récupère le fichier JSON
-    var nom = JSON.parse(nom_json);
-    var option = JSON.parse(option_json);
-    var price = JSON.parse(price_json);
-    var img = JSON.parse(img_json);
-
-    //Clique Bouton "Ajout au panier"
-    const btn = document.querySelector("#btnpanier");
+      //Clique Bouton "Ajout au panier"
+    const btn = document.querySelector("#btnpanier"); 
     btn.addEventListener("click", function () {
-      localStorage.setItem("Prix", price_json);
-      localStorage.setItem("Img", img_json);
-      localStorage.setItem("Name", nom_json);
-      localStorage.setItem("Option", option_json);
-      console.log(img);
-      console.log(price);
-      console.log(option);
-      console.log(nom);
+      let cart = JSON.parse(localStorage.getItem("cart"));  //Recupere mon panier au localstorage format JSON
+      let exist = false; 
+      if (!cart && cart == undefined) { //Verifie si panier exist sinon tableau vide
+        cart = [];
+      }
+      cart.map((product) => {  //Parcourt tableau panier et modifie qtd produit si il existe
+        if (product._id == idProduct._id) {
+          product.qty++;
+          exist = true;
+        }
+      });
+      if (!exist) {
+        idProduct.qty = 1;
+        cart.push(idProduct);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+
       alert("Produit ajouter avec succés ");
     });
   }
