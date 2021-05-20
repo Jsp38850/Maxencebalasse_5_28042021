@@ -46,11 +46,6 @@ request.onreadystatechange = function () {
       cameraPrice.classList = "card-text text-center";
       cameraPrice.textContent = element.price / 100 + " " + "€";
 
-      let cameraAvis = document.createElement("p");
-      figure.appendChild(cameraAvis);
-      cameraAvis.classList = "ml-3 ";
-      cameraAvis.textContent = "Avis" + " " + "(" + 0 + ")";
-
       // Description Produit //
       let cameraDescription = document.createElement("span");
       figure.appendChild(cameraDescription);

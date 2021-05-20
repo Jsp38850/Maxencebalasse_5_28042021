@@ -27,3 +27,14 @@ section img{
 .icone{
     font-size: 20px;
 }
+
+#imgcart{
+    width: 50%;
+    height: 80px;
+}
+
+.total{
+    font-size: 30px;
+    margin-top: 10px;
+}
+

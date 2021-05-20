@@ -1,9 +1,11 @@
-//On récupère L'id de l'URL
+//On récupère l'id de l'URL
 const urlParams = new URLSearchParams(window.location.search);
 const idProduct = urlParams.get("id");
+/****************************************************/
 
-//On crée une variable qui appelle l'id container
+//On crée une variable qui rattache l'id container
 const container = document.getElementById("container");
+/****************************************************/
 
 //On appel la fonction
 let request = new XMLHttpRequest();
@@ -12,8 +14,7 @@ request.onreadystatechange = function () {
     // Affiche des produits
     var idProduct = JSON.parse(this.responseText);
 
-    console.log(idProduct);
-
+    //Construction de la structure HTML
     let div = document.createElement("div");
     container.appendChild(div);
     div.className = "card mb-3 ";
@@ -62,24 +63,24 @@ request.onreadystatechange = function () {
     cameraDescription.id = "cameraDescription";
     cameraDescription.textContent = idProduct.description;
 
-    // Avis
-    let cameraAvis = document.createElement("p");
-    div5.appendChild(cameraAvis);
-    cameraAvis.classList = "card-text mt-2 ";
-    cameraAvis.textContent = "Avis" + " " + "(" + 0 + ")";
-
     // Option: //
     let cameraOption = document.createElement("p");
     div5.appendChild(cameraOption);
     cameraOption.classList = "card-text mt-2 ";
-    cameraOption.textContent = "Option :";
+    cameraOption.textContent = "Option :" + " ";
+
+    const formOption = document.createElement("select");
+    cameraOption.appendChild(formOption);
 
     const list = idProduct.lenses;
+
     list.forEach((item) => {
-      let cameraOption1 = document.createElement("button");
-      cameraOption.appendChild(cameraOption1);
-      cameraOption1.classList = "ml-3 mt-2 btn btn-outline-dark col-3 text-dark ";
+      let cameraOption1 = document.createElement("option");
+      formOption.appendChild(cameraOption1);
+      cameraOption1.classList = "ml-3 mt-2  col-3 text-dark ";
       cameraOption1.textContent = item;
+
+      
     });
 
     // Bouton Ajout panier //
@@ -91,15 +92,17 @@ request.onreadystatechange = function () {
 
     //Localstorage
 
-      //Clique Bouton "Ajout au panier"
-    const btn = document.querySelector("#btnpanier"); 
+    //Clique Bouton "Ajout au panier"
+    const btn = document.querySelector("#btnpanier");
     btn.addEventListener("click", function () {
-      let cart = JSON.parse(localStorage.getItem("cart"));  //Recupere mon panier au localstorage format JSON
-      let exist = false; 
-      if (!cart && cart == undefined) { //Verifie si panier exist sinon tableau vide
+      let cart = JSON.parse(localStorage.getItem("cart")); //Recupere mon panier au localstorage format JSON
+      let exist = false;
+      if (!cart && cart == undefined) {
+        //Verifie si panier exist sinon tableau vide
         cart = [];
       }
-      cart.map((product) => {  //Parcourt tableau panier et modifie qtd produit si il existe
+      cart.map((product) => {
+        //Parcourt tableau panier et modifie qtd produit si il existe
         if (product._id == idProduct._id) {
           product.qty++;
           exist = true;
