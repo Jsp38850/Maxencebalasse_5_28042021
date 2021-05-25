@@ -28,7 +28,7 @@
               <div>
                 <ul class="navbar-nav ">
                   <li class="nav-item active">
-                    <a class="nav-link" href="panier.html">
+                    <a class="nav-link d-flex" href="panier.html" id="shopping">
                       <i class="fas fa-shopping-basket text-dark icone"></i>
                     </a>
                   </li>   
@@ -44,10 +44,72 @@
         
         </section>
 
+        <!--Section Formulaire-->
+        <section class="container mt-5">
+
+          <form >
+            <h1 class="text-center "><u>Formulaire de commande</u></h1>
+            <div class="form-row">
+              <!--Nom-->
+              <div class="form-group col-md-6">
+                <label for="inputLastName">Nom</label>
+                <input type="text" class="form-control" id="inputLastName" placeholder="Nom" required>
+              </div>
+
+              <!--Prénom-->
+              <div class="form-group col-md-6">
+                <label for="inputFisrtName">Prénom</label>
+                <input type="text" class="form-control" id="inputFisrtName" placeholder="Prénom" required>
+              </div>
+            </div>
+
+            <!--Email-->
+            <div class="form-group">
+              <label for="inputEmail">Email</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="Entrez votre adresse mail" required>
+            </div>
+
+            <!--Adresse-->
+            <div class="form-group">
+              <label for="inputAddress">Adresse</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="N° type nom" required>
+            </div>
+
+            <!--Ville-->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">Ville</label>
+                <input type="text" class="form-control" id="inputCity" required>
+              </div>
+
+              <!--Code Postal-->
+              <div class="form-group col-md-3">
+                <label for="inputPostalCode">Code postal</label>
+                <input type="number" class="form-control" id="inputPostalCode"  required>
+              </div>
+
+              <!--Pays-->
+              <div class="form-group col-md-3">
+                <label for="inputState">Pays</label>
+                <select id="inputState" class="form-control">
+                  <option selected>France</option>
+                  <option>Espagne</option>
+                  <option>Italie</option>
+                  <option>Allemagne</option>
+                  <option>Belgique</option>
+                  <option>Luxembourg</option>
+                </select>
+              </div> 
+            </div>
+           
+            <button type="submit" class="btn bg-pink border border-dark container mb-4">Cliquez pour valider votre commande</button>
+          </form>
+        </section>
+
 
 
        <!--Pied de page du site Orinoco-->
-       <footer class="bg-pink container-fluid py-4 fixed-bottom">
+       <footer class="bg-pink container-fluid py-4 ">
         <span>© COPYRIGHT 2021 - Tous Droits Réservés</span>
       </footer>
 

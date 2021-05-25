@@ -7,6 +7,10 @@ const idProduct = urlParams.get("id");
 const container = document.getElementById("container");
 /****************************************************/
 
+//Recupere mon panier au localstorage format JSON
+let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
+
+
 //On appel la fonction
 let request = new XMLHttpRequest();
 request.onreadystatechange = function () {
@@ -119,6 +123,12 @@ request.onreadystatechange = function () {
     });
   }
 };
+
+
+const numberCart = document.createElement("p");
+numberCart.className = ""
+shopping.appendChild(numberCart);
+numberCart.textContent = "(" + qtyTotal + ")" ;
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();
