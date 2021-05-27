@@ -47,45 +47,45 @@
         <!--Section Formulaire-->
         <section class="container mt-5">
 
-          <form >
+          <form method="GET" action="confirm.html" onsubmit = "return validateForm()" name="Form" >
             <h1 class="text-center "><u>Formulaire de commande</u></h1>
             <div class="form-row">
               <!--Nom-->
               <div class="form-group col-md-6">
                 <label for="inputLastName">Nom</label>
-                <input type="text" class="form-control" id="inputLastName" placeholder="Nom" required>
+                <input type="text" class="form-control" id="inputLastName" placeholder="Nom" name="LastName" maxlength="20">
               </div>
 
               <!--Prénom-->
               <div class="form-group col-md-6">
                 <label for="inputFisrtName">Prénom</label>
-                <input type="text" class="form-control" id="inputFisrtName" placeholder="Prénom" required>
+                <input type="text" class="form-control" id="inputFisrtName" placeholder="Prénom" name="FirstName" maxlength="15" >
               </div>
             </div>
 
             <!--Email-->
             <div class="form-group">
               <label for="inputEmail">Email</label>
-              <input type="email" class="form-control" id="inputEmail" placeholder="Entrez votre adresse mail" required>
+              <input type="email" class="form-control" id="inputEmail" placeholder="Entrez votre adresse mail" name="Mail" >
             </div>
 
             <!--Adresse-->
             <div class="form-group">
               <label for="inputAddress">Adresse</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="N° type nom" required>
+              <input type="text" class="form-control" id="inputAddress" placeholder="N° type nom" name="Address">
             </div>
 
             <!--Ville-->
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="inputCity">Ville</label>
-                <input type="text" class="form-control" id="inputCity" required>
+                <input type="text" class="form-control" id="inputCity" placeholder="Ville" name="City">
               </div>
 
               <!--Code Postal-->
               <div class="form-group col-md-3">
                 <label for="inputPostalCode">Code postal</label>
-                <input type="number" class="form-control" id="inputPostalCode"  required>
+                <input type="number" class="form-control" id="inputPostalCode" placeholder="Code Postal" name="PostalCode" >
               </div>
 
               <!--Pays-->
@@ -102,7 +102,7 @@
               </div> 
             </div>
            
-            <button type="submit" class="btn bg-pink border border-dark container mb-4">Cliquez pour valider votre commande</button>
+            <button type="submit"  class="btn bg-pink border border-dark container mb-4">Cliquez pour valider votre commande</button>
           </form>
         </section>
 
@@ -116,5 +116,6 @@
       </div>
     </div>
     <script type="text/javascript" src="js/panier.js"></script>
+    <script type="text/javascript" src="js/form.js"></script>
   </body>
 </html>

@@ -118,12 +118,11 @@ request.onreadystatechange = function () {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-
+      numberCart.textContent = "(" + (qtyTotal +1) + ")" ;
       alert("Produit ajouter avec succés ");
     });
   }
 };
-
 
 const numberCart = document.createElement("p");
 numberCart.className = ""

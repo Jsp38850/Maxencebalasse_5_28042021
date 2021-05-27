@@ -62,5 +62,13 @@ request.onreadystatechange = function () {
     });
   }
 };
+//Recupere mon panier au localstorage format JSON
+let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
+
+const numberCart = document.createElement("p");
+numberCart.className = ""
+shopping.appendChild(numberCart);
+numberCart.textContent = "(" + qtyTotal + ")" ;
+
 request.open("GET", "http://localhost:3000/api/cameras");
 request.send();

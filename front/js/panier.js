@@ -1,10 +1,11 @@
-//Recupere mon panier au localstorage format JSON
+//Recuperation du panier au format JSON
 let cart = JSON.parse(localStorage.getItem("cart"));
+//************************************************//
 
-//Initialise la Variable resultat à 0
+//Initialisation des Variables
 let resultat = 0;
-
 let qtyTotal = 0;
+//************************************//
 
 //Création d'une boucle pour les produits du panier
 cart.forEach((product) => {
@@ -58,10 +59,29 @@ cart.forEach((product) => {
   qty.textContent = product.qty;
 
   //Bouton supprimer
-  let btndelete = document.createElement("btn");
+  const btndelete = document.createElement("btn");
   row.appendChild(btndelete);
   btndelete.className = "col-md-1 mt-4 far fa-times-circle";
-  btndelete.id = "btndelete";
+  btndelete.addEventListener("click", function () {
+    cart.filter((item) => {
+      if (item._id == product._id) {
+        product.qty--;
+        qtyTotal--;
+        console.log(product.qty);
+        alert("Produit supprimer avec succés ");
+      }
+      if (item._id == product._id && product.qty == 0) {
+        localStorage.removeItem("cart");
+        alert("Produit arriver a zero");
+      }
+  
+      numberCart.textContent = "(" + (qtyTotal ) + ")" ;
+   
+  
+    });
+    
+
+  });
 
   //Somme total du produit multiplie par la quantité
   sum = (product.qty * product.price) / 100;
@@ -71,13 +91,18 @@ cart.forEach((product) => {
 
   //Qty total
   qtyTotal += product.qty;
-   
 });
+//**********Fin de la boucle produit**************//
 
+//Nombre de produit dans le panier (Affichage dans le header)
 const numberCart = document.createElement("p");
 shopping.appendChild(numberCart);
-numberCart.textContent = "(" + qtyTotal + ")" ;
+numberCart.textContent = "(" + qtyTotal + ")";
 localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
+
+//Ajout du Prix total au SessionStorage
+const PriceTotal = resultat;
+sessionStorage.setItem("PriceTotal", JSON.stringify(PriceTotal));
 
 //Prix Total
 let total = document.createElement("div");
