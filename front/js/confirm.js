@@ -3,8 +3,7 @@ const container = document.getElementById("container");
 /****************************************************/
 
 let PriceTotal = JSON.parse(sessionStorage.getItem("PriceTotal"));
-let FisrtNameFrom = JSON.parse(sessionStorage.getItem("Prenom"));
-let EmailForm = JSON.parse(sessionStorage.getItem("Mail"));
+let Commande = JSON.parse(sessionStorage.getItem("commande"));
 
 const ConfirmTitle = document.createElement("h1");
 container.appendChild(ConfirmTitle);
@@ -14,7 +13,7 @@ ConfirmTitle.textContent =(" Merci pour votre commande ")
 const ConfirmParaph = document.createElement("p");
 container.appendChild(ConfirmParaph);
 ConfirmParaph.className = "col-md-12 text-center mt-5 confirmParaph"
-ConfirmParaph.innerHTML = "Bonjour" + " " + "<strong>" + FisrtNameFrom + "</strong>" + " " + "votre commande n°" + " " + "<strong>" + "NUMERO DE COMMANDE" + "</strong>" +  " " +"à bien été enregistrer !"
+ConfirmParaph.innerHTML = "Bonjour" + " " + "<strong>" + Commande.contact.firstName + "</strong>" + " " + "votre commande n°" + " " + "<strong>" + Commande.orderId + "</strong>" +  " " +"à bien été enregistrer !"
 
 const ConfirmPrice = document.createElement("p");
 container.appendChild(ConfirmPrice);
@@ -24,7 +23,7 @@ ConfirmPrice.innerHTML = "Le montant total de votre commande est de :" + " " + "
 const ConfirmMail = document.createElement("p");
 container.appendChild(ConfirmMail);
 ConfirmMail.className = "col-md-12 text-center confirmParaph"
-ConfirmMail.innerHTML = "Un e-mail de confirmation vous à été envoyer à l'adresse : " + " " +" <strong>" + EmailForm + "</strong>" 
+ConfirmMail.innerHTML = "Un e-mail de confirmation vous à été envoyer à l'adresse : " + " " +" <strong>" + Commande.contact.email + "</strong>" 
 
 const BtnReturn = document.createElement("a");
 container.appendChild(BtnReturn);

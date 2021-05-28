@@ -7,6 +7,23 @@ let resultat = 0;
 let qtyTotal = 0;
 //************************************//
 
+//Bouton vider le panier
+
+const delCart = document.createElement("button");
+container.appendChild(delCart);
+delCart.className = "mb-2 col-md-2   border bg-pink rounded  ";
+delCart.textContent = "Vider le panier";
+delCart.addEventListener("click", function () {
+  if (confirm("Voulez-vous vider la totalité de votre panier ?")) {
+    // Clic sur OK
+    localStorage.setItem("cart" , "[]");
+    localStorage.removeItem("qtyTotal");
+
+    container.innerHTML = "";
+}
+
+});
+
 //Création d'une boucle pour les produits du panier
 cart.forEach((product) => {
   // Mise en forme Liste produit
@@ -59,10 +76,14 @@ cart.forEach((product) => {
   qty.textContent = product.qty;
 
   //Bouton supprimer
-  const btndelete = document.createElement("btn");
+  const btndelete = document.createElement("a");
   row.appendChild(btndelete);
   btndelete.className = "col-md-1 mt-4 far fa-times-circle";
+
+  //Function bouton supprimer
   btndelete.addEventListener("click", function () {
+    //Clique sur l'icone de la croix
+
     cart.filter((item) => {
       if (item._id == product._id) {
         product.qty--;
@@ -74,13 +95,9 @@ cart.forEach((product) => {
         localStorage.removeItem("cart");
         alert("Produit arriver a zero");
       }
-  
-      numberCart.textContent = "(" + (qtyTotal ) + ")" ;
-   
-  
-    });
-    
 
+      numberCart.textContent = "(" + qtyTotal + ")";
+    });
   });
 
   //Somme total du produit multiplie par la quantité
@@ -91,14 +108,21 @@ cart.forEach((product) => {
 
   //Qty total
   qtyTotal += product.qty;
+
+  
 });
+
 //**********Fin de la boucle produit**************//
 
 //Nombre de produit dans le panier (Affichage dans le header)
 const numberCart = document.createElement("p");
 shopping.appendChild(numberCart);
 numberCart.textContent = "(" + qtyTotal + ")";
+if (qtyTotal == null) {
+   qtyTotal = 0;
+}
 localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
+
 
 //Ajout du Prix total au SessionStorage
 const PriceTotal = resultat;
@@ -113,3 +137,6 @@ let titleTotal = document.createElement("p");
 total.appendChild(titleTotal);
 titleTotal.className = "col-12 text-right font-weight-bold total";
 titleTotal.textContent = "Total" + "" + ":" + " " + resultat + " " + "€";
+
+
+

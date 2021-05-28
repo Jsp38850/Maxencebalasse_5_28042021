@@ -65,10 +65,15 @@ request.onreadystatechange = function () {
 //Recupere mon panier au localstorage format JSON
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
+//Nombre de produit dans le panier (Affichage dans le header)
 const numberCart = document.createElement("p");
-numberCart.className = ""
 shopping.appendChild(numberCart);
-numberCart.textContent = "(" + qtyTotal + ")" ;
+numberCart.textContent = "(" + qtyTotal + ")";
+if (qtyTotal == null) {
+   qtyTotal = 0;
+}
+localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
+
 
 request.open("GET", "http://localhost:3000/api/cameras");
 request.send();

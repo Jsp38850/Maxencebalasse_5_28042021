@@ -105,6 +105,7 @@ request.onreadystatechange = function () {
         //Verifie si panier exist sinon tableau vide
         cart = [];
       }
+      console.log(cart);
       cart.map((product) => {
         //Parcourt tableau panier et modifie qtd produit si il existe
         if (product._id == idProduct._id) {
@@ -124,10 +125,15 @@ request.onreadystatechange = function () {
   }
 };
 
+//Nombre de produit dans le panier (Affichage dans le header)
 const numberCart = document.createElement("p");
-numberCart.className = ""
 shopping.appendChild(numberCart);
-numberCart.textContent = "(" + qtyTotal + ")" ;
+if (qtyTotal == null) {
+  qtyTotal = 0;
+}
+numberCart.textContent = "(" + qtyTotal + ")";
+
+localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();

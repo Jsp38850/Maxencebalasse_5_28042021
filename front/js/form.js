@@ -1,50 +1,69 @@
-function validateForm()  {
-     const LastName = document.getElementById("inputLastName").value;
-     const FirstName = document.getElementById("inputFisrtName").value;
-     const Email = document.getElementById("inputEmail").value;
-     const Address = document.getElementById("inputAddress").value;
-     const city = document.getElementById("inputCity").value;
-     const NumberPostal = document.getElementById("inputPostalCode").value;  
+function validateForm() {
+  const LastName = document.getElementById("inputLastName").value;
+  const FirstName = document.getElementById("inputFisrtName").value;
+  const Email = document.getElementById("inputEmail").value;
+  const Address = document.getElementById("inputAddress").value;
+  const city = document.getElementById("inputCity").value;
+  const NumberPostal = document.getElementById("inputPostalCode").value;
 
-    if(LastName == "") {
-        alert("Merci d'ajouter votre Nom");
-        Form["LastName"].focus(); // Focus
-        return false;
-    }
+  if (LastName == "") {
+    alert("Merci d'ajouter votre Nom");
+    Form["LastName"].focus(); // Focus
+    return false;
+  }
 
-    if(FirstName == "") {
-        alert("Merci dajouter votre Prénom");
-        Form["FirstName"].focus(); // Focus
-        return false;
-    }
+  if (FirstName == "") {
+    alert("Merci dajouter votre Prénom");
+    Form["FirstName"].focus(); // Focus
+    return false;
+  }
 
-    if(Email == "") {
-        alert("Merci dajouter votre Email");
-        Form["Mail"].focus(); // Focus
-        return false;
-    }
+  if (Email == "") {
+    alert("Merci dajouter votre Email");
+    Form["Mail"].focus(); // Focus
+    return false;
+  }
 
-    if(Address == "") {
-        alert("Merci dajouter votre Adresse");
-        Form["Address"].focus(); // Focus
-        return false;
-    }
+  if (Address == "") {
+    alert("Merci dajouter votre Adresse");
+    Form["Address"].focus(); // Focus
+    return false;
+  }
 
-    if(city == "") {
-        alert("Merci dajouter votre ville");
-       
-        Form["City"].focus(); // Focus
-        return false;
-    }
+  if (city == "") {
+    alert("Merci dajouter votre ville");
 
-    if(NumberPostal == "") {
-        alert("Merci dajouter votre code postal");
-        Form["PostalCode"].focus(); // Focus
-        return false;
-    }
+    Form["City"].focus(); // Focus
+    return false;
+  }
 
-    sessionStorage.setItem("Prenom", JSON.stringify(FirstName)); 
-    sessionStorage.setItem("Mail", JSON.stringify(Email));
+  if (NumberPostal == "") {
+    alert("Merci dajouter votre code postal");
+    Form["PostalCode"].focus(); // Focus
+    return false;
+  }
 
-    return true;
+  //Recuperation du panier au format JSON
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  
+
+  fetch("http://localhost:3000/api/cameras/order", {
+    method: "post",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      contact: {
+        firstName: FirstName,
+        lastName: LastName,
+        address: Address,
+        city: city,
+        email: Email,
+      },
+      products: [cart._id],
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => sessionStorage.setItem("commande", JSON.stringify(res)));
 }
