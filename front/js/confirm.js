@@ -2,8 +2,8 @@
 const container = document.getElementById("container");
 /****************************************************/
 
-let PriceTotal = JSON.parse(sessionStorage.getItem("PriceTotal"));
-let Commande = JSON.parse(sessionStorage.getItem("commande"));
+let PriceTotal = JSON.parse(localStorage.getItem("PriceTotal"));
+let Commande = JSON.parse(localStorage.getItem("commande"));
 
 const ConfirmTitle = document.createElement("h1");
 container.appendChild(ConfirmTitle);

@@ -16,12 +16,13 @@ delCart.textContent = "Vider le panier";
 delCart.addEventListener("click", function () {
   if (confirm("Voulez-vous vider la totalité de votre panier ?")) {
     // Clic sur OK
-    localStorage.setItem("cart" , "[]");
+    localStorage.setItem("cart", "[]");
     localStorage.removeItem("qtyTotal");
 
     container.innerHTML = "";
-}
-
+    container.textContent = "Votre panier est vide";
+    titleTotal.textContent = "Total" + " " + ":" + " " + "0" + " " + "€";
+  }
 });
 
 //Création d'une boucle pour les produits du panier
@@ -83,21 +84,44 @@ cart.forEach((product) => {
   //Function bouton supprimer
   btndelete.addEventListener("click", function () {
     //Clique sur l'icone de la croix
-
-    cart.filter((item) => {
+    cart.map((item) => {
       if (item._id == product._id) {
         product.qty--;
         qtyTotal--;
-        console.log(product.qty);
+        alert("Produit supprimé avec succès");
+
+        numberCart.textContent = "(" + qtyTotal + ")";
+        qty.textContent = product.qty;
+        if (product.qty == 0){
+          row.innerHTML = "";
+          alert("Produit arriver a zero");
+        }
+      }
+
+
+      
+    });
+    const productList = cart.filter((item) => item.qty > 0);
+    localStorage.setItem("cart", JSON.stringify(productList));
+  
+
+   
+    /* cart.filter((item) => {
+      if (item._id == product._id) {
+        product.qty--;
+        qtyTotal--;
         alert("Produit supprimer avec succés ");
       }
       if (item._id == product._id && product.qty == 0) {
-        localStorage.removeItem("cart");
+        localStorage.setItem("cart", "[]");
         alert("Produit arriver a zero");
       }
 
       numberCart.textContent = "(" + qtyTotal + ")";
-    });
+      qty.textContent = product.qty;
+      row.innerHTML = "";
+      
+    });*/
   });
 
   //Somme total du produit multiplie par la quantité
@@ -108,8 +132,6 @@ cart.forEach((product) => {
 
   //Qty total
   qtyTotal += product.qty;
-
-  
 });
 
 //**********Fin de la boucle produit**************//
@@ -119,24 +141,20 @@ const numberCart = document.createElement("p");
 shopping.appendChild(numberCart);
 numberCart.textContent = "(" + qtyTotal + ")";
 if (qtyTotal == null) {
-   qtyTotal = 0;
+  qtyTotal = 0;
 }
 localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
 
-
 //Ajout du Prix total au SessionStorage
 const PriceTotal = resultat;
-sessionStorage.setItem("PriceTotal", JSON.stringify(PriceTotal));
+localStorage.setItem("PriceTotal", JSON.stringify(PriceTotal));
 
 //Prix Total
 let total = document.createElement("div");
-container.appendChild(total);
+TotalSomme.appendChild(total);
 total.className = "row container border border-dark  mt-3 text-center";
 
 let titleTotal = document.createElement("p");
 total.appendChild(titleTotal);
 titleTotal.className = "col-12 text-right font-weight-bold total";
-titleTotal.textContent = "Total" + "" + ":" + " " + resultat + " " + "€";
-
-
-
+titleTotal.textContent = "Total" + " " + ":" + " " + resultat + " " + "€";

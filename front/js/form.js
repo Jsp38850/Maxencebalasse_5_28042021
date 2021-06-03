@@ -44,13 +44,12 @@ function validateForm() {
   }
 
   //Recuperation du panier au format JSON
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  
+  let carts = JSON.parse(localStorage.getItem("cart"));
 
   fetch("http://localhost:3000/api/cameras/order", {
     method: "post",
     headers: {
-      Accept: "application/json, text/plain, */*",
+      Accept: "*/*",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -61,9 +60,11 @@ function validateForm() {
         city: city,
         email: Email,
       },
-      products: [cart._id],
+      products: carts.map((cart) => cart._id),
     }),
   })
     .then((res) => res.json())
-    .then((res) => sessionStorage.setItem("commande", JSON.stringify(res)));
+    .then((res) => localStorage.setItem("commande", JSON.stringify(res)))
+    .catch((e) => console.log(e));
+  
 }
