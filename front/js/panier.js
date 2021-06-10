@@ -8,7 +8,6 @@ let qtyTotal = 0;
 //************************************//
 
 //Bouton vider le panier
-
 const delCart = document.createElement("button");
 container.appendChild(delCart);
 delCart.className = "mb-2 col-md-2   border bg-pink rounded  ";
@@ -24,6 +23,7 @@ delCart.addEventListener("click", function () {
     titleTotal.textContent = "Total" + " " + ":" + " " + "0" + " " + "€";
   }
 });
+//********************************************************//
 
 //Création d'une boucle pour les produits du panier
 cart.forEach((product) => {
@@ -46,6 +46,7 @@ cart.forEach((product) => {
   //Div title
   let divTitle = document.createElement("div");
   row.appendChild(divTitle);
+
   divTitle.className = "col-md-3 mt-4 ";
 
   // Nom du produit //
@@ -92,20 +93,15 @@ cart.forEach((product) => {
 
         numberCart.textContent = "(" + qtyTotal + ")";
         qty.textContent = product.qty;
-        if (product.qty == 0){
+        if (product.qty == 0) {
           row.innerHTML = "";
           alert("Produit arriver a zero");
         }
       }
-
-
-      
     });
     const productList = cart.filter((item) => item.qty > 0);
     localStorage.setItem("cart", JSON.stringify(productList));
-  
 
-   
     /* cart.filter((item) => {
       if (item._id == product._id) {
         product.qty--;

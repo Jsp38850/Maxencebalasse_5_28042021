@@ -2,9 +2,9 @@
 const container = document.getElementById("container");
 
 //On créé un tableau
-let ul = document.createElement("ul");
+const ul = document.createElement("ul");
 container.appendChild(ul);
-ul.className = "row mt-3 list-unstyled";
+ul.className = "row mt-3 list-unstyled ";
 
 let request = new XMLHttpRequest();
 request.onreadystatechange = function () {
@@ -53,15 +53,19 @@ request.onreadystatechange = function () {
       cameraDescription.id = "cameraDescription";
       cameraDescription.textContent = element.description;
 
-      // Bouton Info produit //
+      // Bouton "En savoir plus" produit //
       let cameraBouton = document.createElement("a");
       figure.appendChild(cameraBouton);
-      cameraBouton.classList = "btn bg-pink  border-0 text-dark card-body";
+      cameraBouton.classList = "btn bg-pink  border-0 text-dark card-body ";
       cameraBouton.textContent = "En savoir plus ...";
       cameraBouton.href = "products.html?id=" + element._id;
     });
   }
 };
+//*******************************************************//
+
+//Systeme d'affichage du nombre d'article dans le panier
+
 //Recupere mon panier au localstorage format JSON
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
@@ -70,10 +74,8 @@ const numberCart = document.createElement("p");
 shopping.appendChild(numberCart);
 numberCart.textContent = "(" + qtyTotal + ")";
 if (qtyTotal == null) {
-   qtyTotal = 0;
+  qtyTotal = 0;
 }
-localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
-
 
 request.open("GET", "http://localhost:3000/api/cameras");
 request.send();

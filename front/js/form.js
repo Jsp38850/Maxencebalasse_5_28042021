@@ -66,5 +66,4 @@ function validateForm() {
     .then((res) => res.json())
     .then((res) => localStorage.setItem("commande", JSON.stringify(res)))
     .catch((e) => console.log(e));
-  
 }

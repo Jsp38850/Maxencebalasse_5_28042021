@@ -10,7 +10,6 @@ const container = document.getElementById("container");
 //Recupere mon panier au localstorage format JSON
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
-
 //On appel la fonction
 let request = new XMLHttpRequest();
 request.onreadystatechange = function () {
@@ -83,8 +82,6 @@ request.onreadystatechange = function () {
       formOption.appendChild(cameraOption1);
       cameraOption1.classList = "ml-3 mt-2  col-3 text-dark ";
       cameraOption1.textContent = item;
-
-      
     });
 
     // Bouton Ajout panier //
@@ -119,8 +116,8 @@ request.onreadystatechange = function () {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      numberCart.textContent = "(" + (qtyTotal +1) + ")" ;
-      alert("Produit ajouter avec succés ");
+      numberCart.textContent = "(" + (qtyTotal + 1) + ")";
+      alert("Produit ajouté avec succès ");
     });
   }
 };
@@ -128,12 +125,10 @@ request.onreadystatechange = function () {
 //Nombre de produit dans le panier (Affichage dans le header)
 const numberCart = document.createElement("p");
 shopping.appendChild(numberCart);
+numberCart.textContent = "(" + qtyTotal + ")";
 if (qtyTotal == null) {
   qtyTotal = 0;
 }
-numberCart.textContent = "(" + qtyTotal + ")";
-
-localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();
