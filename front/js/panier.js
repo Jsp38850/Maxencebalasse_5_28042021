@@ -28,51 +28,51 @@ delCart.addEventListener("click", function () {
 //Création d'une boucle pour les produits du panier
 cart.forEach((product) => {
   // Mise en forme Liste produit
-  let row = document.createElement("div");
+  const row = document.createElement("div");
   container.appendChild(row);
   row.className = "row container border border-dark col-md-12  text-center";
 
   //Div img
-  let divimg = document.createElement("div");
+  const divimg = document.createElement("div");
   row.appendChild(divimg);
   divimg.className = "col-md-4 ";
 
   //Image
-  let img = document.createElement("img");
+  const img = document.createElement("img");
   img.id = "imgcart";
   divimg.appendChild(img);
   img.src = product.imageUrl;
 
   //Div title
-  let divTitle = document.createElement("div");
+  const divTitle = document.createElement("div");
   row.appendChild(divTitle);
 
   divTitle.className = "col-md-3 mt-4 ";
 
   // Nom du produit //
-  let cameraName = document.createElement("p");
+  const cameraName = document.createElement("p");
   divTitle.appendChild(cameraName);
   cameraName.className = "";
   cameraName.textContent = product.name;
 
   //div prix
-  let divprice = document.createElement("div");
+  const divprice = document.createElement("div");
   row.appendChild(divprice);
   divprice.className = "col-md-2 mt-4";
 
   // Prix produit //
-  let cameraPrice = document.createElement("p");
+  const cameraPrice = document.createElement("p");
   divprice.appendChild(cameraPrice);
   cameraPrice.classList = "";
   cameraPrice.textContent = product.price / 100 + " " + "€";
 
   //div qtd
-  let divqty = document.createElement("div");
+  const divqty = document.createElement("div");
   row.appendChild(divqty);
   divqty.className = "col-md-2 mt-4";
 
   //quantiter produit
-  let qty = document.createElement("p");
+  const qty = document.createElement("p");
   divqty.appendChild(qty);
   qty.className = "";
   qty.textContent = product.qty;
@@ -89,6 +89,7 @@ cart.forEach((product) => {
       if (item._id == product._id) {
         product.qty--;
         qtyTotal--;
+        
         alert("Produit supprimé avec succès");
 
         numberCart.textContent = "(" + qtyTotal + ")";
@@ -99,25 +100,8 @@ cart.forEach((product) => {
         }
       }
     });
-    const productList = cart.filter((item) => item.qty > 0);
+    let productList = cart.filter((item) => item.qty > 0);
     localStorage.setItem("cart", JSON.stringify(productList));
-
-    /* cart.filter((item) => {
-      if (item._id == product._id) {
-        product.qty--;
-        qtyTotal--;
-        alert("Produit supprimer avec succés ");
-      }
-      if (item._id == product._id && product.qty == 0) {
-        localStorage.setItem("cart", "[]");
-        alert("Produit arriver a zero");
-      }
-
-      numberCart.textContent = "(" + qtyTotal + ")";
-      qty.textContent = product.qty;
-      row.innerHTML = "";
-      
-    });*/
   });
 
   //Somme total du produit multiplie par la quantité
@@ -142,15 +126,15 @@ if (qtyTotal == null) {
 localStorage.setItem("qtyTotal", JSON.stringify(qtyTotal));
 
 //Ajout du Prix total au SessionStorage
-const PriceTotal = resultat;
+let PriceTotal = resultat;
 localStorage.setItem("PriceTotal", JSON.stringify(PriceTotal));
 
 //Prix Total
-let total = document.createElement("div");
+const total = document.createElement("div");
 TotalSomme.appendChild(total);
 total.className = "row container border border-dark  mt-3 text-center";
 
-let titleTotal = document.createElement("p");
+const titleTotal = document.createElement("p");
 total.appendChild(titleTotal);
 titleTotal.className = "col-12 text-right font-weight-bold total";
 titleTotal.textContent = "Total" + " " + ":" + " " + resultat + " " + "€";
