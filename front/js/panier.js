@@ -89,7 +89,7 @@ cart.forEach((product) => {
       if (item._id == product._id) {
         product.qty--;
         qtyTotal--;
-        
+
         alert("Produit supprimé avec succès");
 
         numberCart.textContent = "(" + qtyTotal + ")";
@@ -98,12 +98,14 @@ cart.forEach((product) => {
           row.innerHTML = "";
           alert("Produit arriver a zero");
         }
+        UpdateTotal(resultat, product.price);
       }
     });
     let productList = cart.filter((item) => item.qty > 0);
     localStorage.setItem("cart", JSON.stringify(productList));
   });
 
+ 
   //Somme total du produit multiplie par la quantité
   sum = (product.qty * product.price) / 100;
 
@@ -137,4 +139,4 @@ total.className = "row container border border-dark  mt-3 text-center";
 const titleTotal = document.createElement("p");
 total.appendChild(titleTotal);
 titleTotal.className = "col-12 text-right font-weight-bold total";
-titleTotal.textContent = "Total" + " " + ":" + " " + resultat + " " + "€";
+titleTotal.innerHTML = "Total" + " " + ":" + ' <span id="Total">' + resultat + "</span> " + "€";
