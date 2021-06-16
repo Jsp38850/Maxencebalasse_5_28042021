@@ -1,5 +1,3 @@
-  
-
 //Fonction de validation du formulaire//
 function validateForm() {
   const LastName = document.getElementById("inputLastName").value;

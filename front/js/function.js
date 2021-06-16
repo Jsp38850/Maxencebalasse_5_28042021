@@ -4,3 +4,16 @@ function UpdateTotal(result, price) {
   resultat = newTotal;
   document.querySelector("#Total").innerHTML = newTotal;
 }
+/*************************************/
+
+//Affichage du nombre de produit dans le panier au header
+function QtdHeader() {
+  let numberCart = document.createElement("p");
+  shopping.appendChild(numberCart);
+  numberCart.textContent = "(" + qtyTotal + ")";
+
+  if (qtyTotal == null) {
+    qtyTotal = 0;
+  }
+}
+/*************************************/
