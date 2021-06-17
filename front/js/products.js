@@ -10,9 +10,6 @@ let container = document.getElementById("container");
 //Recupere mon panier au localstorage format JSON
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
-//Nombre de produit dans le panier (Affichage dans le header)
-QtdHeader();
-
 //On appel la fonction
 const request = new XMLHttpRequest();
 request.onreadystatechange = function ProductSelect() {
@@ -105,6 +102,7 @@ request.onreadystatechange = function ProductSelect() {
         //Verifie si panier exist sinon tableau vide
         cart = [];
       }
+      console.log(cart);
       cart.map((product) => {
         //Parcourt tableau panier et modifie qtd produit si il existe
         if (product._id == idProduct._id) {
@@ -118,10 +116,19 @@ request.onreadystatechange = function ProductSelect() {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
+      numberCart.textContent = "(" + (qtyTotal + 1) + ")";
       alert("Produit ajouté avec succès ");
     });
   }
 };
+
+//Nombre de produit dans le panier (Affichage dans le header)
+const numberCart = document.createElement("p");
+shopping.appendChild(numberCart);
+if (qtyTotal == null) {
+  qtyTotal = 0;
+}
+numberCart.textContent = "(" + qtyTotal + ")";
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();
