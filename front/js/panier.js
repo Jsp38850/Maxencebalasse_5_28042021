@@ -12,7 +12,7 @@ const delCart = document.createElement("button");
 container.appendChild(delCart);
 delCart.className = "mb-2 col-md-2   border bg-pink rounded  ";
 delCart.textContent = "Vider le panier";
-delCart.addEventListener("click", function deleteCarts () {
+delCart.addEventListener("click", function deleteCarts() {
   if (confirm("Voulez-vous vider la totalité de votre panier ?")) {
     // Clic sur OK
     localStorage.setItem("cart", "[]");
@@ -83,7 +83,7 @@ cart.forEach((product) => {
   btndelete.className = "col-md-1 mt-4 far fa-times-circle";
 
   //Function bouton supprimer
-  btndelete.addEventListener("click", function deleteProductSelect () {
+  btndelete.addEventListener("click", function deleteProductSelect() {
     //Clique sur l'icone de la croix
     cart.map((item) => {
       if (item._id == product._id) {
@@ -105,7 +105,6 @@ cart.forEach((product) => {
     localStorage.setItem("cart", JSON.stringify(productList));
   });
 
- 
   //Somme total du produit multiplie par la quantité
   sum = (product.qty * product.price) / 100;
 

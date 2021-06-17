@@ -70,7 +70,7 @@ request.onreadystatechange = function listProduct() {
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
 //Nombre de produit dans le panier (Affichage dans le header)
-QtdHeader()
+QtdHeader();
 //*******************************************************//
 
 request.open("GET", "http://localhost:3000/api/cameras");

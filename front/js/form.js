@@ -6,7 +6,7 @@ function validateForm() {
   const Address = document.getElementById("inputAddress").value;
   const city = document.getElementById("inputCity").value;
   const NumberPostal = document.getElementById("inputPostalCode").value;
-  
+
   //Recuperation du panier au format JSON
   let carts = JSON.parse(localStorage.getItem("cart"));
 
@@ -47,18 +47,12 @@ function validateForm() {
     return false;
   }
 
-
-  if(!carts || carts == undefined || carts.length == 0){
-
-    alert("Panier vide")
+  if (!carts || carts == undefined || carts.length == 0) {
+    alert("Panier vide");
     return false;
   }
-  
-  
+
   //*******************************************************//
-
-
-
 
   //Méthode fetch pour envoyer les données à l'api
   fetch("http://localhost:3000/api/cameras/order", {

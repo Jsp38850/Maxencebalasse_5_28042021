@@ -1,5 +1,3 @@
-
-
 //On récupère l'id de l'URL
 let urlParams = new URLSearchParams(window.location.search);
 let idProduct = urlParams.get("id");
@@ -9,8 +7,6 @@ let idProduct = urlParams.get("id");
 let container = document.getElementById("container");
 /****************************************************/
 
-
-
 //Recupere mon panier au localstorage format JSON
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
@@ -19,7 +15,7 @@ QtdHeader();
 
 //On appel la fonction
 const request = new XMLHttpRequest();
-request.onreadystatechange = function ProductSelect () {
+request.onreadystatechange = function ProductSelect() {
   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
     // Affiche des produits
     const idProduct = JSON.parse(this.responseText);
@@ -102,14 +98,13 @@ request.onreadystatechange = function ProductSelect () {
 
     //Clique Bouton "Ajout au panier"
     const btn = document.querySelector("#btnpanier");
-    btn.addEventListener("click", function addProduct  () {
+    btn.addEventListener("click", function addProduct() {
       let cart = JSON.parse(localStorage.getItem("cart")); //Recupere mon panier au localstorage format JSON
       let exist = false;
       if (!cart && cart == undefined) {
         //Verifie si panier exist sinon tableau vide
         cart = [];
       }
-      console.log(cart);
       cart.map((product) => {
         //Parcourt tableau panier et modifie qtd produit si il existe
         if (product._id == idProduct._id) {
@@ -122,14 +117,11 @@ request.onreadystatechange = function ProductSelect () {
         cart.push(idProduct);
       }
 
-
       localStorage.setItem("cart", JSON.stringify(cart));
       alert("Produit ajouté avec succès ");
     });
   }
 };
-
-
 
 request.open("GET", "http://localhost:3000/api/cameras/" + idProduct);
 request.send();
