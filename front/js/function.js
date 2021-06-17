@@ -10,10 +10,9 @@ function UpdateTotal(result, price) {
 function QtdHeader() {
   let numberCart = document.createElement("p");
   shopping.appendChild(numberCart);
-  numberCart.textContent = "(" + qtyTotal + ")";
-
   if (qtyTotal == null) {
     qtyTotal = 0;
   }
+  numberCart.textContent = "(" + qtyTotal + ")";
 }
 /*************************************/

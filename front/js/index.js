@@ -7,7 +7,7 @@ container.appendChild(ul);
 ul.className = "row mt-3 list-unstyled ";
 
 const request = new XMLHttpRequest();
-request.onreadystatechange = function () {
+request.onreadystatechange = function listProduct() {
   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
     // Affiche des produits //
     const response = JSON.parse(this.responseText);
@@ -70,12 +70,7 @@ request.onreadystatechange = function () {
 let qtyTotal = JSON.parse(localStorage.getItem("qtyTotal"));
 
 //Nombre de produit dans le panier (Affichage dans le header)
-const numberCart = document.createElement("p");
-shopping.appendChild(numberCart);
-numberCart.textContent = "(" + qtyTotal + ")";
-if (qtyTotal == null) {
-  qtyTotal = 0;
-}
+QtdHeader()
 //*******************************************************//
 
 request.open("GET", "http://localhost:3000/api/cameras");
